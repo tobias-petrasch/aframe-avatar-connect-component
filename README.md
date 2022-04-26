@@ -12,7 +12,7 @@ A simple component to integrate [AvatarConnect](https://avatarconnect.org) into 
 
 - npm
 
-  Install npm as the service is based on React and uses npm as a package manager. _NOTE:_ This installation command requires [brew](https://brew.sh/) and only runs on Mac.
+  Install npm as this project uses npm as a package manager. _NOTE:_ This installation command requires [brew](https://brew.sh/) and only runs on Mac.
 
   ```sh
   $ brew install node
@@ -74,7 +74,9 @@ For development, the AvatarConnect A-Frame component can be seen in an example b
 $ npm run start
 ```
 
-Navigate to `http://localhost:9000` to choose one of the exmaples.
+Navigate to `http://localhost:9000` to choose one of the examples.
+
+##### Examples
 
 #### Production
 
@@ -89,20 +91,23 @@ It builds the app for production to the `dist` folder. It contains a minified an
 
 ### Properties
 
-| Property      | Default value                                         | Description                                                                                                                                   |
-| ------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| maxHeight     | 610                                                   | maxHeight defines the maximum height of the modal from AvatarConnect                                                                          |
-| showModal     | true                                                  | showModal determines if the modal should be shown on initialization                                                                           |
-| options (TBD) | [["ready-player-me", { gateway: "mona" }], "meebits"] | options is the configuration object for AvatarConnect. A custom parser is currently missing, hence only the default configuration can be used |
+| Property        | Type    | Default value                                         | Description                                                                                                                                                            |
+| --------------- | ------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bridgeUrl`     | string  | https://v0.avatarconnect.org                          | `bridgeUrl` defines the base url of the AvatarConnect bridge (useful if a self hosted version is used)                                                                 |
+| `maxHeight`     | number  | 610                                                   | `maxHeight` defines the maximum height of the modal from AvatarConnect                                                                                                 |
+| `maxWidth`      | number  | 800                                                   | `maxWidth` defines the maximum width of the modal from AvatarConnect                                                                                                   |
+| `padding`       | number  | 6                                                     | `padding` defines the inner padding of the modal from AvatarConnect                                                                                                    |
+| `showModal`     | boolean | true                                                  | `showModal` determines if the modal should be shown on initialization                                                                                                  |
+| `configuration` | json    | [["ready-player-me", { gateway: "mona" }], "meebits"] | `configuration` defines which AvatarProviders are used within AvatarConnect. As the different providers require different configuration a JSON object is used for now. |
 
 ### Events
 
-| Event                          | Description                                                                              | Example payload                                                                                                                                                                                     |
-| ------------------------------ | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| avatar-connect:show-modal      | Emitted when the modal opened up                                                         | `null`                                                                                                                                                                                              |
-| avatar-connect:close-modal     | Emitted when the modal is closed                                                         | `null`                                                                                                                                                                                              |
-| avatar-connect:avatar-received | Emitted when the AvatarConnect bridge has responded with an avatar                       | `{ avatar: { format: 'glb', type: 'humanoid', uri: 'https://d1a370nemizbjq.cloudfront.net/64144f87-52ad-4eb7-be05-c2d05078fe91.glb', metadata: null, provider: 'readyplayerme', version: '1.0.0' }` |
-| avatar-connect:avatar-created  | Emitted when the avatar component is placed in the scene and displays the current avatar | `{ avatar: { format: 'glb', type: 'humanoid', uri: 'https://d1a370nemizbjq.cloudfront.net/64144f87-52ad-4eb7-be05-c2d05078fe91.glb', metadata: null, provider: 'readyplayerme', version: '1.0.0' }` |
+| Event                            | Description                                                                              | Example payload                                                                                                                                                                                     |
+| -------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `avatar-connect:show-modal`      | Emitted when the modal opened up                                                         | `null`                                                                                                                                                                                              |
+| `avatar-connect:close-modal`     | Emitted when the modal is closed                                                         | `null`                                                                                                                                                                                              |
+| `avatar-connect:avatar-received` | Emitted when the AvatarConnect bridge has responded with an avatar                       | `{ avatar: { format: 'glb', type: 'humanoid', uri: 'https://d1a370nemizbjq.cloudfront.net/64144f87-52ad-4eb7-be05-c2d05078fe91.glb', metadata: null, provider: 'readyplayerme', version: '1.0.0' }` |
+| `avatar-connect:avatar-created`  | Emitted when the avatar component is placed in the scene and displays the current avatar | `{ avatar: { format: 'glb', type: 'humanoid', uri: 'https://d1a370nemizbjq.cloudfront.net/64144f87-52ad-4eb7-be05-c2d05078fe91.glb', metadata: null, provider: 'readyplayerme', version: '1.0.0' }` |
 
 ## Contributing
 
