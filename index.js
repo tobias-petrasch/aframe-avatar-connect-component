@@ -19,12 +19,15 @@ if (typeof AvatarConnect === "undefined") {
  */
 AFRAME.registerComponent("avatar-connect", {
   schema: {
-    // TODO: add custom parser for options schema
-    options: {
-      type: "array",
+    configuration: {
       default: [["ready-player-me", { gateway: "mona" }], "meebits"],
+      parse: JSON.parse,
+      stringify: JSON.stringify,
     },
+    bridgeUrl: { type: "string", default: "https://v0.avatarconnect.org" },
     maxHeight: { type: "number", default: 610 },
+    maxWidth: { type: "number", default: 800 },
+    padding: { type: "number", default: 6 },
     showModal: { type: "boolean", default: true },
   },
 
@@ -37,8 +40,11 @@ AFRAME.registerComponent("avatar-connect", {
    * Called once when component is attached. Generally for initial setup.
    */
   init: function () {
-    this.connector = new AvatarConnect(this.data.options, {
+    this.connector = new AvatarConnect(this.data.configuration, {
+      bridgeUrl: this.data.bridgeUrl,
       maxHeight: this.data.maxHeight,
+      maxWidth: this.data.maxWidth,
+      padding: this.data.padding,
     });
 
     this.connector.on("result", (result) => {
